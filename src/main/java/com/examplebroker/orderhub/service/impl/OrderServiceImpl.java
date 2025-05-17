@@ -43,17 +43,13 @@ public class OrderServiceImpl implements OrderService {
         BigDecimal totalOrderValue = orderRequest.getPrice()
                 .multiply(BigDecimal.valueOf(orderRequest.getSize()));
 
-        //todo: should we apply MATCHED case
-        // Check and update balances based on order side
         if (orderRequest.getOrderSide() == OrderSide.BUY) {
             Long tryAmount = totalOrderValue.longValue() * -1; // Negative amount to reduce balance
             assetService.updateAssetBalance(orderRequest.getCustomerId(), TRY_ASSET, tryAmount);
-            //todo: should not we update STOCK asset amount
         } else {
             Long assetAmount = orderRequest.getSize() * -1; // Negative amount to reduce balance
             assetService.updateAssetBalance(
                     orderRequest.getCustomerId(), orderRequest.getAssetName(), assetAmount);
-            //todo: should not we update TRY asset amount
         }
         
         Order order = Order.builder()
@@ -73,7 +69,6 @@ public class OrderServiceImpl implements OrderService {
     }
 
     //todo: cannot make both filtering maybe i should add validation
-    //todo: I should show deleted orders probably
     @Override
     public List<OrderResponse> getOrdersByFilter(OrderFilterRequest filterRequest) {
         List<Order> orders;
@@ -105,7 +100,6 @@ public class OrderServiceImpl implements OrderService {
         order.setStatus(OrderStatus.CANCELED);
         orderRepository.save(order);
 
-        //todo : should we return or should we deducted when approved
         // Return funds to customer
         if (order.getOrderSide() == OrderSide.BUY) {
             // Return TRY to customer for BUY orders

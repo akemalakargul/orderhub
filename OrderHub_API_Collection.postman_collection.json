@@ -1,0 +1,496 @@
+{
+  "info": {
+    "name": "OrderHub API Collection",
+    "description": "Collection of API requests for the OrderHub brokerage firm application",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Asset Endpoints",
+      "item": [
+        {
+          "name": "Get All Assets for Customer",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/v1/assets/customer/1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "v1", "assets", "customer", "1"]
+            },
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "admin",
+                  "type": "string"
+                },
+                {
+                  "key": "password",
+                  "value": "adminPassword",
+                  "type": "string"
+                }
+              ]
+            },
+            "description": "Retrieves all assets for a specific customer"
+          }
+        },
+        {
+          "name": "Get Assets for Customer 2",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/v1/assets/customer/2",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "v1", "assets", "customer", "2"]
+            },
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "admin",
+                  "type": "string"
+                },
+                {
+                  "key": "password",
+                  "value": "adminPassword",
+                  "type": "string"
+                }
+              ]
+            },
+            "description": "Retrieves all assets for customer 2"
+          }
+        },
+        {
+          "name": "Get Specific Asset (TRY) for Customer",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/v1/assets/customer/1/asset/TRY",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "v1", "assets", "customer", "1", "asset", "TRY"]
+            },
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "admin",
+                  "type": "string"
+                },
+                {
+                  "key": "password",
+                  "value": "adminPassword",
+                  "type": "string"
+                }
+              ]
+            },
+            "description": "Retrieves a specific asset (TRY) for a customer"
+          }
+        },
+        {
+          "name": "Get Specific Asset (AAPL) for Customer",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/v1/assets/customer/1/asset/AAPL",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "v1", "assets", "customer", "1", "asset", "AAPL"]
+            },
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "admin",
+                  "type": "string"
+                },
+                {
+                  "key": "password",
+                  "value": "adminPassword",
+                  "type": "string"
+                }
+              ]
+            },
+            "description": "Retrieves a specific asset (AAPL) for a customer"
+          }
+        },
+        {
+          "name": "Unauthenticated Request",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/v1/assets/customer/1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "v1", "assets", "customer", "1"]
+            },
+            "description": "Example of an unauthenticated request (should be rejected)"
+          }
+        }
+      ],
+      "description": "Endpoints related to asset management"
+    },
+    {
+      "name": "Order Endpoints",
+      "item": [
+        {
+          "name": "Get All Orders for Customer",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"customerId\": \"1\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/v1/orders/filter",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "v1", "orders", "filter"]
+            },
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "admin",
+                  "type": "string"
+                },
+                {
+                  "key": "password",
+                  "value": "adminPassword",
+                  "type": "string"
+                }
+              ]
+            },
+            "description": "Gets all orders for a specific customer"
+          }
+        },
+        {
+          "name": "Get Orders by Status",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"customerId\": \"1\",\n    \"status\": \"PENDING\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/v1/orders/filter",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "v1", "orders", "filter"]
+            },
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "admin",
+                  "type": "string"
+                },
+                {
+                  "key": "password",
+                  "value": "adminPassword",
+                  "type": "string"
+                }
+              ]
+            },
+            "description": "Gets orders filtered by status (PENDING)"
+          }
+        },
+        {
+          "name": "Get Canceled Orders",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"customerId\": \"1\",\n    \"status\": \"CANCELED\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/v1/orders/filter",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "v1", "orders", "filter"]
+            },
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "admin",
+                  "type": "string"
+                },
+                {
+                  "key": "password",
+                  "value": "adminPassword",
+                  "type": "string"
+                }
+              ]
+            },
+            "description": "Gets orders filtered by status (CANCELED)"
+          }
+        },
+        {
+          "name": "Create BUY Order",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"customerId\": \"1\",\n    \"assetName\": \"MSFT\",\n    \"orderSide\": \"BUY\",\n    \"size\": 10,\n    \"price\": 280.00\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/v1/orders",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "v1", "orders"]
+            },
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "admin",
+                  "type": "string"
+                },
+                {
+                  "key": "password",
+                  "value": "adminPassword",
+                  "type": "string"
+                }
+              ]
+            },
+            "description": "Creates a new BUY order for MSFT"
+          }
+        },
+        {
+          "name": "Create SELL Order",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"customerId\": \"1\",\n    \"assetName\": \"AAPL\",\n    \"orderSide\": \"SELL\",\n    \"size\": 5,\n    \"price\": 185.00\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/v1/orders",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "v1", "orders"]
+            },
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "admin",
+                  "type": "string"
+                },
+                {
+                  "key": "password",
+                  "value": "adminPassword",
+                  "type": "string"
+                }
+              ]
+            },
+            "description": "Creates a new SELL order for AAPL"
+          }
+        },
+        {
+          "name": "Cancel Order",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/v1/orders/1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "v1", "orders", "1"]
+            },
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "admin",
+                  "type": "string"
+                },
+                {
+                  "key": "password",
+                  "value": "adminPassword",
+                  "type": "string"
+                }
+              ]
+            },
+            "description": "Cancels a pending order by ID"
+          }
+        },
+        {
+          "name": "Cancel Non-Pending Order",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/v1/orders/102",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "v1", "orders", "102"]
+            },
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "admin",
+                  "type": "string"
+                },
+                {
+                  "key": "password",
+                  "value": "adminPassword",
+                  "type": "string"
+                }
+              ]
+            },
+            "description": "Attempts to cancel a non-pending order (should fail)"
+          }
+        },
+        {
+          "name": "Create BUY Order with Insufficient Funds",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"customerId\": \"1\",\n    \"assetName\": \"MSFT\",\n    \"orderSide\": \"BUY\",\n    \"size\": 1000000,\n    \"price\": 280.00\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/v1/orders",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "v1", "orders"]
+            },
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "admin",
+                  "type": "string"
+                },
+                {
+                  "key": "password",
+                  "value": "adminPassword",
+                  "type": "string"
+                }
+              ]
+            },
+            "description": "Attempts to create a BUY order with insufficient TRY balance (should fail)"
+          }
+        },
+        {
+          "name": "Create SELL Order with Insufficient Assets",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"customerId\": \"1\",\n    \"assetName\": \"AAPL\",\n    \"orderSide\": \"SELL\",\n    \"size\": 1000,\n    \"price\": 185.00\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/v1/orders",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "v1", "orders"]
+            },
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "admin",
+                  "type": "string"
+                },
+                {
+                  "key": "password",
+                  "value": "adminPassword",
+                  "type": "string"
+                }
+              ]
+            },
+            "description": "Attempts to create a SELL order with insufficient asset balance (should fail)"
+          }
+        }
+      ],
+      "description": "Endpoints related to order management"
+    }
+  ]
+} 

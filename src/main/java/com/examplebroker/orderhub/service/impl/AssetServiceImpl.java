@@ -52,10 +52,7 @@ public class AssetServiceImpl implements AssetService {
                     ", Available: " + asset.getUsableSize());
         }
 
-        //todo: why
         asset.setUsableSize(asset.getUsableSize() + amount);
-        //todo: this should set on match
-        //asset.setSize(asset.getSize() + amount);
 
         return assetRepository.save(asset);
     }
@@ -75,7 +72,6 @@ public class AssetServiceImpl implements AssetService {
         }
     }
 
-    //todo: maybe I can do mapStruct implementation or move these mapping operations to different class
     private AssetResponse mapToAssetResponse(Asset asset) {
         return AssetResponse.builder()
                 .id(asset.getId())

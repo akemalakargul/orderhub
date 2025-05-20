@@ -1,3 +1,9 @@
+/* ----------  CUSTOMERS  ---------- */
+INSERT INTO customers (id, username, password, customer_id, email, full_name) VALUES
+(1, 'customer1', '$2a$10$asIuiDfJh2MQtB5/O5s/I.skTXeh6sqj10FcJcJDcC0yAVhStc3.O', '1', 'customer1@example.com', 'John Doe'),
+(2, 'customer2', '$2a$10$asIuiDfJh2MQtB5/O5s/I.skTXeh6sqj10FcJcJDcC0yAVhStc3.O', '2', 'customer2@example.com', 'Jane Smith'),
+(3, 'customer3', '$2a$10$asIuiDfJh2MQtB5/O5s/I.skTXeh6sqj10FcJcJDcC0yAVhStc3.O', '3', 'customer3@example.com', 'Robert Johnson');
+
 /* ----------  ASSETS  ---------- */
 INSERT INTO assets (id, customer_id, asset_name, size, usable_size) VALUES
 /* Customer 1  ---------------------------------------------------------- */

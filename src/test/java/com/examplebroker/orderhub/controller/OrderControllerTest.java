@@ -16,12 +16,15 @@ import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.context.annotation.Import;
 import org.springframework.http.MediaType;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors;
+import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 
 import com.examplebroker.orderhub.config.SecurityConfig;
@@ -30,11 +33,15 @@ import com.examplebroker.orderhub.dto.OrderRequest;
 import com.examplebroker.orderhub.dto.OrderResponse;
 import com.examplebroker.orderhub.model.OrderSide;
 import com.examplebroker.orderhub.model.OrderStatus;
+import com.examplebroker.orderhub.security.JwtService;
+import com.examplebroker.orderhub.security.SecurityService;
+import com.examplebroker.orderhub.service.CustomerUserDetailsService;
 import com.examplebroker.orderhub.service.OrderService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 @WebMvcTest(OrderController.class)
-@Import(SecurityConfig.class)
+@ContextConfiguration(classes = {OrderController.class, SecurityConfig.class})
+@AutoConfigureMockMvc(addFilters = true)
 class OrderControllerTest {
     
     @Autowired
@@ -45,6 +52,15 @@ class OrderControllerTest {
     
     @MockBean
     private OrderService orderService;
+    
+    @MockBean
+    private SecurityService securityService;
+    
+    @MockBean
+    private CustomerUserDetailsService customerUserDetailsService;
+    
+    @MockBean
+    private JwtService jwtService;
     
     private OrderRequest orderRequest;
     private OrderResponse orderResponse;
@@ -89,6 +105,11 @@ class OrderControllerTest {
                         .createDate(LocalDateTime.now().minusDays(1))
                         .build()
         );
+        
+        doNothing().when(securityService).validateCustomerAccess("customer1");
+        
+        when(jwtService.generateToken(any(UserDetails.class))).thenReturn("mock.jwt.token");
+        when(jwtService.isTokenValid(any(String.class), any(UserDetails.class))).thenReturn(true);
     }
     
     @Test
